@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B4DC36EF-2BC8-4D4F-BAE9-4398969BA547</string>
+	<key>IDESourceControlProjectName</key>
+	<string>EncodeThing</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>CC54260480AA4EF4C4B8EEB6A8A8FA9B1CA6E7AE</key>
+		<string>https://github.com/badkangaroo/CypherTrinket.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>EncodeThing.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>CC54260480AA4EF4C4B8EEB6A8A8FA9B1CA6E7AE</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/badkangaroo/CypherTrinket.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>CC54260480AA4EF4C4B8EEB6A8A8FA9B1CA6E7AE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CC54260480AA4EF4C4B8EEB6A8A8FA9B1CA6E7AE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>EncodeThing</string>
+		</dict>
+	</array>
+</dict>
+</plist>
