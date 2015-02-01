@@ -203,7 +203,6 @@ int stepValue;
 -(void) BuildKey : ( unsigned long ) ASCIIValue
 {
     //key can be any number of characters.
-    //NSString *passKey = @"alex.okita@gmail.com";
     
     //set number of rings to make
     int columns = 4;
@@ -225,23 +224,13 @@ int stepValue;
     {
         for(int row = 1; row <= rows; row++)
         {
-            if([self.ClassicScrambleSwitch isOn])
-            {
-                unsigned long outPutIndex = (val * row * column) % [outputChars count];
-                NSString *s = [NSString stringWithFormat:@"%@",[outputChars objectAtIndex:outPutIndex]];
-                UIButton *button = (UIButton*)[self.MainView viewWithTag:t++];
-                [button setTitle:s forState:UIControlStateNormal];
-            }
-            else
-            {
-                unsigned long div = (val / 94) + t + column + row;
-                rollingVal += div ^ val + t;
-                unsigned long outPutIndex = (rollingVal + t + column + row) % [outputChars count];
-                NSString *s = [NSString stringWithFormat:@"%@",[outputChars objectAtIndex:outPutIndex]];
-                UIButton *button = (UIButton*)[self.MainView viewWithTag:t++];
-                [button setTitle:s forState:UIControlStateNormal];
-                NSLog(@"rollingVal: %lu outPut: %lu v: %@", rollingVal, outPutIndex, s);
-            }
+            unsigned long div = (val / 94) + t + column + row;
+            rollingVal += div ^ val + t;
+            unsigned long outPutIndex = (rollingVal + t + column + row) % [outputChars count];
+            NSString *s = [NSString stringWithFormat:@"%@",[outputChars objectAtIndex:outPutIndex]];
+            UIButton *button = (UIButton*)[self.MainView viewWithTag:t++];
+            [button setTitle:s forState:UIControlStateNormal];
+            NSLog(@"rollingVal: %lu outPut: %lu v: %@", rollingVal, outPutIndex, s);
         }
     }
 }
