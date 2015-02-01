@@ -124,7 +124,7 @@ int stepValue;
     for (int i=0; i < [input length]; i++)
     {
         int asciiCode = [input characterAtIndex:i];
-        val += asciiCode;
+        val += asciiCode ^ i;
     }
     self.ASCIIValueOutput.text = [NSString stringWithFormat:@"%lu", val];
     return val;
