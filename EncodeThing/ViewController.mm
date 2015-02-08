@@ -31,13 +31,16 @@ int stepValue;
     //build label grid
     //37 / 2 = 18.5 so we'll make two columns, one with 19 and the other with 18
     NSArray *inLetters = [self GetNSArrayFromString:keyLetters];
+    NSArray *outputChars = [self MakeASCIIArray];
     
     for(int i = 0; i < [inLetters count]; i++)
     {
         UILabel *label = [[UILabel alloc] init];
+        
         //make a letter
         int ls = (i < 19) ? 10 : (width/2);
         int ts = (i < 19) ? top + (i * size) :  top + ((i-19) * (size));
+        
         //left top width height
         label.frame =CGRectMake(ls, ts, size, size);
         label.font=[UIFont boldSystemFontOfSize:15.0];
@@ -57,18 +60,12 @@ int stepValue;
             int ls = (row < 19) ? 10 : (width/2);
             ls += 10 + size + (size * column);
             int ts = (row < 19) ? top + (row * size) :  top + ((row-19) * (size));
-            UIButton *button = [[UIButton alloc] init];
-            
-            NSArray *outputChars = [self MakeASCIIArray];
             NSString *s = [NSString stringWithFormat:@"%@", [outputChars objectAtIndex:row]];
-            
-            //testing buttons
             CGRect frame = CGRectMake(ls,ts,size,size);
             UIButton *b = [self makeAButton:s withFrame:frame];
-            [self.KeyView addSubview:b];
             b.tag = ++tag;
-            [self.KeyView addSubview:button];
-            [self.CodeLetters addObject:button];
+            [self.KeyView addSubview:b];
+            [self.CodeLetters addObject:b];
         }
     }
 }
@@ -86,7 +83,7 @@ int stepValue;
     [button setTitle:title forState:UIControlStateNormal];
     [button addTarget:self
                action:@selector(letterPressed:)
-     forControlEvents:UIControlEventTouchDown];
+     forControlEvents:UIControlEventAllTouchEvents];
     
     return button;
 }
@@ -102,6 +99,7 @@ int stepValue;
     NSString *previousText = label.text;
     label.text = [NSString stringWithFormat:@"%@%@", previousText, sender.currentTitle];
     NSLog(@"pressed: %@", sender.currentTitle);
+    [sender setBackgroundColor:[UIColor greenColor]];
 }
 
 - (IBAction)EncodingInput:(UITextField *)sender
@@ -154,7 +152,6 @@ int stepValue;
     for(int i = 33, index = 0; i < 127; ++i , ++index)
     {
         NSString *c = [NSString stringWithFormat:@"%c", i];
-        //set array to converted char
         NSString *s = [NSString stringWithFormat:@"%@", c];
         [chars addObject :s];
     }
@@ -174,17 +171,8 @@ int stepValue;
     //for various versions of this
     NSArray *outputChars = [self MakeASCIIArray];
     
-    
-    int l = (row + 1);//don't allow 0
-    
-    unsigned long r = (keyIndex * l);
-    //scrambler number which is different for each
-    //row
-    
-    int c = (col + 1);//don't allow 0
-    
-    unsigned long o = (r * c);
-    
+    unsigned long r = (keyIndex * row);
+    unsigned long o = (r * col);
     unsigned long outPutIndex = (o % [outputChars count]);
     
     NSString *s = [NSString stringWithFormat:@"%@",[outputChars objectAtIndex:outPutIndex]];
@@ -233,7 +221,6 @@ int stepValue;
             NSString *s = [NSString stringWithFormat:@"%@",[outputChars objectAtIndex:outPutIndex]];
             UIButton *button = (UIButton*)[self.MainView viewWithTag:t++];
             [button setTitle:s forState:UIControlStateNormal];
-            NSLog(@"rollingVal: %lu outPut: %lu v: %@", rollingVal, outPutIndex, s);
         }
     }
 }
@@ -252,6 +239,11 @@ int stepValue;
 - (IBAction)ClearButton:(UIButton *)sender
 {
     [self Password].text = @"";
+    
+    for(UIButton* button in self.CodeLetters)
+    {
+        [button setBackgroundColor:[UIColor whiteColor]];
+    }
 }
 
 @end
