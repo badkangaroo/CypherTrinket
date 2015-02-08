@@ -77,6 +77,7 @@ int stepValue;
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:rect];
+    button.titleLabel.font = [UIFont systemFontOfSize: 12];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor greenColor] forState:UIControlStateDisabled];
     [button setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
@@ -85,7 +86,8 @@ int stepValue;
     [button setTitle:title forState:UIControlStateNormal];
     [button addTarget:self
                action:@selector(letterPressed:)
-     forControlEvents:UIControlEventTouchUpInside];
+     forControlEvents:UIControlEventTouchDown];
+    
     return button;
 }
 
@@ -96,9 +98,10 @@ int stepValue;
 
 -(IBAction)letterPressed:(UIButton*)sender
 {
-    UILabel *label = [self Password];
+    UITextField *label = [self Password];
     NSString *previousText = label.text;
     label.text = [NSString stringWithFormat:@"%@%@", previousText, sender.currentTitle];
+    NSLog(@"pressed: %@", sender.currentTitle);
 }
 
 - (IBAction)EncodingInput:(UITextField *)sender

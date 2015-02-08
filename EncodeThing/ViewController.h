@@ -18,10 +18,10 @@
 
 @property (strong, nonatomic) NSMutableArray *WordLetters;
 @property (strong, nonatomic) NSMutableArray *CodeLetters;
-@property (strong, nonatomic) IBOutlet UILabel *ASCIIValueOutput;
+@property (strong, nonatomic) IBOutlet UITextField *ASCIIValueOutput;
 @property (strong, nonatomic) IBOutlet UIView *KeyView;
 - (IBAction)ScrambleType:(id)sender;
-@property (weak, nonatomic) IBOutlet UILabel *Password;
+@property (weak, nonatomic) IBOutlet UITextField *Password;
 - (IBAction)ClearButton:(UIButton *)sender;
 
 @end
