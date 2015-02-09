@@ -59,9 +59,9 @@ int stepValue;
         {
             int ls = (row < 19) ? 10 : (width/2);
             ls += 10 + size + (size * column);
-            int ts = (row < 19) ? top + (row * size) :  top + ((row-19) * (size));
+            int ts = (row < 19) ? top + (row * size) :  top + ((row - 19) * (size));
             NSString *s = [NSString stringWithFormat:@"%@", [outputChars objectAtIndex:row]];
-            CGRect frame = CGRectMake(ls,ts,size,size);
+            CGRect frame = CGRectMake( ls, ts, size, size);
             UIButton *b = [self makeAButton:s withFrame:frame];
             b.tag = ++tag;
             [self.KeyView addSubview:b];
@@ -83,7 +83,8 @@ int stepValue;
     [button setTitle:title forState:UIControlStateNormal];
     [button addTarget:self
                action:@selector(letterPressed:)
-     forControlEvents:UIControlEventAllTouchEvents];
+     forControlEvents:UIControlEventTouchUpInside];
+    [button setBackgroundImage:[UIImage imageNamed:@"textBox"] forState:UIControlStateNormal];
     
     return button;
 }
@@ -240,9 +241,16 @@ int stepValue;
 {
     [self Password].text = @"";
     
-    for(UIButton* button in self.CodeLetters)
+    int columns = 4;
+    unsigned long rows = [keyLetters length];
+    int t = 1;
+    for(int column = 1; column <= columns; column++)
     {
-        [button setBackgroundColor:[UIColor whiteColor]];
+        for(int row = 1; row <= rows; row++)
+        {
+            UIButton *button = (UIButton*)[self.MainView viewWithTag:t++];
+            [button setBackgroundColor:[UIColor whiteColor]];
+        }
     }
 }
 
